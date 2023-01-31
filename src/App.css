@@ -1,5 +1,6 @@
 body{
   margin: 0;
+  background-color: rgb(5, 41, 112); 
 }
 
 .filter-selector{
@@ -36,4 +37,8 @@ body{
 .show-button:hover{
   background-color: rgb(220, 148, 13);
   transition: background 1000ms ease;
+}
+
+.button{
+  background-color: rgb(219, 219, 33);
 }

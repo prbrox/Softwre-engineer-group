@@ -4,14 +4,11 @@ export default function Navbar() {
     return (
         <>
             <AppBar position="static" >
-                <Toolbar>
-                    <IconButton size='large' edge='start' color='inherit' aria-label='logo'>
-
-                    </IconButton>
-                    <Button variant="contained" size='large' href="/databaseControls" color="success" style={{ margin: 20 }}>
+                <Toolbar >
+                    <Button variant="contained" size='large' href="/databaseControls" color="secondary" style={{ margin: 20 }}>
                         Controls
                     </Button>
-                    <Button variant="contained" size='large' href="/" color="success" style={{ margin: 20 }}>
+                    <Button variant="contained" size='large' href="/" color="secondary" style={{ margin: 20 }}>
                         Home
                     </Button>
 

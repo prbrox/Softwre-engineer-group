@@ -16,8 +16,9 @@ const Create = (name, res) => {
 //read all names from the equipment's table
 const Read = (res) => {
     try {
+        console.log("read")
         const empty = [];
-        connection.query(`select * from equipment`, (err, result) => {
+        connection.query(`select * from equipment where equipment != 'Not Specified'`, (err, result) => {
             while (result.length) {
                 empty.push((result.shift()))
             }
@@ -29,23 +30,25 @@ const Read = (res) => {
 }
 
 //change the supervisor's name
-const Update = (name, update, res) => {
+const Update = (res, reasons) => {
     try {
-        connection.query(`select * from equipment`)
-        res.send("updated")
+        connection.query(`update equipment set equipment = '${reasons.reason}' where id = ${reasons.id}`, (err, result) => {
+            res.json(result.changedRows)
+        })
     } catch (error) {
-        res.send("error", error)
+        res.json("error", error)
     }
 }
 
 //deletes supervisor 
-const Delete = (name, res) => {
-    try {
-        connection.query(`select * from equipment`)
-        res.send("Deleted")
-    } catch (error) {
-        res.send("error", error)
-    }
+const Delete = (res, reasons) => {
+    console.log("deleted", reasons)
+    // try {
+    //     connection.query(`select * from equipment`)
+    //     res.send("Deleted")
+    // } catch (error) {
+    //     res.send("error", error)
+    // }
 }
 
 

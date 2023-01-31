@@ -1,5 +1,4 @@
-import { Modal, Table, TableBody, TableCell, TableRow } from "@mui/material";
-import { makeStyles } from "@mui/styles";
+import { Box, Button, Modal, Table, TableBody, TableCell, TableRow } from "@mui/material";
 import React, { useEffect, useState } from 'react';
 import Select from "react-select";
 import axios from "../api/axios";
@@ -12,10 +11,10 @@ export default function DatabaseControls() {
 
 
     const [equipment, setEquipment] = useState([]);
-    const [line, setLine] = useState({ value: Number, name: String });
+    const [line, setLine] = useState({ value: Number, name: String, id: String });
     const [display, setDisplay] = useState([])
-    const [open, setOpen] = React.useState(true);
-    const [modalStyle] = React.useState(getModalStyle);
+    const [open, setOpen] = useState({ update: false, delete: false, create: false });
+    const [reasons, setReasons] = useState({ reason: String, line: Number });
 
     useEffect(() => {
         setDisplay(equipment.filter((key) => key.line === line.value))
@@ -30,55 +29,40 @@ export default function DatabaseControls() {
         }),
     };
 
-    function rand() {
-        return Math.round(Math.random() * 20) - 10;
-    }
 
-    function getModalStyle() {
-        const top = 50 + rand();
-        const left = 50 + rand();
-        return {
-            top: `${top}%`,
-            left: `${left}%`,
-            transform: `translate(-${top}%, -${left}%)`,
-        };
-    }
 
-    const useStyles = makeStyles(theme => ({
-        modal: {
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-        },
-        paper: {
-            position: 'absolute',
-            width: 450,
-            backgroundColor: theme.palette.background.paper,
-            boxShadow: theme.shadows[5],
-            padding: theme.spacing(2, 4, 3),
-        },
-    }));
+
 
     const onLoad = async () => {
         axios.get(process.env.REACT_APP_READ_CONTROLS).then(async (response) => {
             setEquipment(response.data);
+        }).catch((err) => {
+            console.log(err, 'errors');
+        })
+    }
+
+    const openPopup = async (location, equipment, line, id) => {
+        setReasons({ reason: equipment, line: line, id: id })
+        setOpen({ [location]: true })
+    }
+
+
+    const update = async () => {
+        axios.post(process.env.REACT_APP_UPDATE_CONTROLS, { reasons: reasons }).then(async (response) => {
+            console.log(response.data);
 
         }).catch((err) => {
             console.log(err, 'errors');
         })
     }
 
-
-    const check = (id) => {
-        handleOpen()
+    const deleted = async () => {
+        axios.post(process.env.REACT_APP_DELETE_CONTROLS, { reasons: reasons }).then(async (response) => {
+            console.log(response.data);
+        }).catch((err) => {
+            console.log(err, 'errors');
+        })
     }
-
-    const handleOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
 
 
 
@@ -86,33 +70,91 @@ export default function DatabaseControls() {
 
         <>
             <Navbar />
-            <Select
-                className="filter-selector"
-                styles={customStyles}
-                options={lineNames}
-                placeholder="Select the line"
-                onChange={(e) => { setLine({ ...line, value: parseInt(e.value), name: e.label }) }}
-            ></Select>
+            <Box style={{ display: 'flex', justifyContent: 'center', marginTop: '20px', marginBottom: '20px' }}>
 
-            <Modal
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-                open={open}
-                onClose={handleClose}
-            >
-                <div style={{ background: "white", width: '50vw', textAlign:'center' }}>
-                    <h2>Simple React Modal</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi accumsan odio enim, non pharetra est ultrices et.
-                    </p>
+                <Button variant='contained' style={{ marginRight: '50px', color: "rgb(250, 230, 12)", background: "rgb(177, 81, 42)" }} onClick={() => setOpen({ create: true })}> ADD REASON</Button>
+
+                <Select
+                    className="filter-selector"
+                    styles={customStyles}
+                    options={lineNames}
+                    placeholder="Select the line"
+                    onChange={(e) => { setLine({ ...line, value: parseInt(e.value), name: e.label }) }}>
+                </Select>
+
+            </Box>
+            {/*update modal */}
+            <Modal aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description"
+                open={open.update}
+                onClose={() => setOpen({ ...open, update: false })}
+                style={{ textAlign: 'center', left: '40vw', top: '25vh' }}>
+                <div style={{ background: "white", width: '30vw', height: '20vh', textAlign: 'center', left: '40vw' }}>
+                    <Box style={{ display: 'flex', justifyContent: 'flex-end' }}><Button style={{
+                        borderRadius: 23, width: '10px', backgroundColor: 'black', color: 'red', fontSize: "10px"
+                    }} onClick={() => setOpen({ ...open, update: false })}>x</Button></Box>
+                    <textarea style={{ justifyContent: 'flex-end', width: '20vw', height: '10vh', fontSize: '20pt', textAlign: 'center' }}
+                        onChange={((e) => setReasons({ ...reasons, reason: e.target.value }))} defaultValue={reasons.reason}>
+
+                    </textarea>
+                    <Box style={{ display: 'flex', justifyContent: 'center' }} ><Button color="success" variant="contained" size='medium' onClick={update}>SUBMIT</Button></Box>
                 </div>
             </Modal>
-            <Table aria-label="simple table">
+
+            {/*Delete modal */}
+            <Modal aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description"
+                open={open.delete}
+                onClose={() => setOpen({ ...open, delete: false })}
+                style={{ textAlign: 'center', left: '40vw', top: '25vh' }}>
+                <div style={{ background: "white", width: '30vw', height: '20vh', textAlign: 'center', left: '40vw' }}>
+                    <Box style={{ display: 'flex', justifyContent: 'flex-end' }}><Button style={{
+                        borderRadius: 23, width: '10px', backgroundColor: 'black', color: 'red',
+                        fontSize: "10px"
+                    }} onClick={() => setOpen({ ...open, delete: false })}>x</Button></Box>
+                    <h2>{reasons.reason}</h2>
+                    <p style={{ fontSize: 'large' }}>Are you sure you want to delete?</p>
+
+                    <Box style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+                        <Button color="success" variant="contained" size='large' onClick={() => setOpen({ ...open, delete: false })}>NO</Button><Button color="error" variant="contained" size='large' onClick={deleted}>YES</Button>
+                    </Box>
+
+                </div>
+            </Modal>
+
+            {/*update modal */}
+            <Modal aria-labelledby="simple-modal-title" aria-describedby="simple-modal-description"
+                open={open.create}
+                onClose={() => setOpen({ ...open, create: false })}
+                style={{ textAlign: 'center', left: '40vw', top: '25vh' }}>
+                <div style={{ background: "white", width: '30vw', height: '20vh', textAlign: 'center', left: '40vw' }}>
+                    <Box style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                        <Button style={{
+                            borderRadius: 23, backgroundColor: 'black', color: 'red', fontSize: "10px"
+                        }} onClick={() => setOpen({ ...open, create: false })}>x
+                        </Button>
+                    </Box>
+                    <Box marginTop='20px'>
+                        <label style={{ fontSize: '20pt', marginRight: '20px' }}>Reason</label>
+                        <input style={{ justifyContent: 'flex-end', width: '20vw', height: '5vh', fontSize: '20pt', textAlign: 'center' }}
+                            onChange={((e) => setReasons({ ...reasons, reason: e.target.value }))} defaultValue={reasons.reason}>
+                        </input>
+                    </Box>
+                    <Select
+                        styles={customStyles}
+                        options={lineNames}
+                        placeholder="Select the line"
+                        onChange={(e) => { setLine({ ...line, value: parseInt(e.value), name: e.label }) }}>
+                    </Select>
+                    <Box style={{ display: 'flex', justifyContent: 'center', marginTop: '20px' }} >
+                        <Button color="success" variant="contained" size='medium' onClick={update}>SUBMIT</Button>
+                    </Box>
+                </div>
+            </Modal>
+
+            <Table aria-label="simple table" >
                 <TableBody>
                     <TableRow >
                         {/*<TableCell sx={{ background: "black", color: 'white' }}>Delete</TableCell> */}
-
-                        <TableCell sx={{ background: "black", color: 'white' }}>Reasons</TableCell>
+                        <TableCell sx={{ background: 'black', color: 'white' }}>Reasons</TableCell>
                         <TableCell sx={{ background: "black", color: 'white' }}>Delete</TableCell>
                         <TableCell sx={{ background: "black", color: 'white' }}>Edit</TableCell>
                         <TableCell sx={{ background: "black", color: 'white' }} >Line Name</TableCell>
@@ -125,20 +167,15 @@ export default function DatabaseControls() {
                                 display.map((rows, index) => {
                                     return (
                                         <TableRow key={index}>
-
                                             <TableCell sx={{ background: 'white', border: '1px solid black' }}>{rows.equipment}</TableCell>
                                             <TableCell sx={{ background: 'white', border: '1px solid black' }}>
-                                                <button className="delete-btn" onClick={() => check(rows.id)}>
-                                                    x
-                                                </button>
+                                                <button className="delete-btn" onClick={() => openPopup('delete', rows.equipment, rows.line, rows.id)}> x</button>
                                             </TableCell>
                                             <TableCell sx={{ background: 'white', border: '1px solid black' }}>
                                                 <button
                                                     className="show-button"
-                                                    onClick={() => check(rows.id)}
-                                                >
-                                                    O
-                                                </button>
+                                                    onClick={() => openPopup('update', rows.equipment, rows.line, rows.id)}
+                                                > O</button>
                                             </TableCell>
                                             <TableCell sx={{ background: 'white', border: '1px solid black' }}>{line.name}</TableCell>
                                             <TableCell sx={{ background: 'white', border: '1px solid black' }}>{rows.line}</TableCell>
