@@ -4,7 +4,7 @@ body{
 }
 
 .filter-selector{
-  width: 20vw;
+  width: 350px;
 }
 
 .container-delete-btn{
@@ -41,4 +41,13 @@ body{
 
 .button{
   background-color: rgb(219, 219, 33);
+}
+
+.modal-select{
+  width: 20.5vw;
+  justify-content: flex-end;
+}
+
+.space{
+  margin-left: 20px;
 }
