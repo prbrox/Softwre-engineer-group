@@ -19,7 +19,9 @@ const Create = (res, record) => {
         break;
       }
       
-    connection.query(record.query);
+    connection.query(record.query, (results)=>{
+      console.log(results)
+    });
     res.send(200);
   } catch (error) {
     res.send(400);
@@ -31,7 +33,7 @@ const Read = (res) => {
   try {
     console.log("read");
     //console.log(query)
-    var data = { equipment: [{}], reasons: [], category: [] };
+    var data = { equipment: [], reasons: [], category: [] };
 
     connection.query(
       "select * from equipment where equipment != 'Not Specified' and deleted = 0",

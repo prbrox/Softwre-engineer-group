@@ -20,7 +20,7 @@ app.post("/remove-controls", (req, res) => { Delete(res, req.body.record); })
 app.post("/add-controls", (req, res) => { Create(res, req.body.record); })
 
 
-var PORT = process.env.PORT || 3001;
+var PORT = (Number(process.env.PORT) + 1) || 3050;
 app.listen(PORT, () => {
     console.log(`the server started on Port : ${PORT}`)
 })
