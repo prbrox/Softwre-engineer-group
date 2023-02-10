@@ -18,11 +18,6 @@ export default function DatabaseControls() {
     onLoad();
   }, []);
 
-  const [lines, setLines] = useState({
-    line: { value: Number, name: String },
-    equipment: [],
-    reasons: { reason: String, line: Number, id: String },
-  });
   const [display, setDisplay] = useState({
     update: false,
     delete: false,
@@ -36,7 +31,7 @@ export default function DatabaseControls() {
     name: String,
     database: String,
     rowName: String,
-    query: " "
+    query: " ",
   });
 
   //the records that are returned on load
@@ -50,25 +45,42 @@ export default function DatabaseControls() {
 
   //when choice changes, switch the selected records
   useEffect(() => {
-    if (choice === "Equipment") {
-      setRecords({ ...records, selected: records.retrieved.equipment });
-      setDocument({ ...document, database: "equipment", rowName: "equipment" });
-    } else if (choice === "Reasons") {
-      setRecords({ ...records, selected: records.retrieved.reasons });
-      setDocument({ ...document, database: "dt_code", rowName: "dt_reason" });
-    } else {
-      setRecords({ ...records, displayed: records.retrieved.category });
-      setDocument({
-        ...document,
-        database: "sps_downtime_codes",
-        rowName: "Metric",
-      });
+    switch (choice) {
+      case "Equipment":
+        setRecords((previous) => ({
+          ...previous,
+          selected: records.retrieved.equipment,
+        }));
+        setDocument((previous) => ({
+          ...previous,
+          database: "equipment",
+          rowName: "equipment",
+        }));
+        break;
+      case "Reasons":
+        setRecords({ ...records, selected: records.retrieved.reasons });
+        setDocument((previous) => ({
+          ...previous,
+          database: "dt_code",
+          rowName: "dt_reason",
+        }));
+        break;
+      case "SPS LOSS CATEGORY":
+        setRecords({ ...records, displayed: records.retrieved.category });
+        setDocument({
+          ...document,
+          database: "sps_downtime_codes",
+          rowName: "Metric",
+        });
+        break;
+      default:
+        break;
     }
   }, [choice]);
 
   // useEffect(() => {
-  //   console.log(records);
-  // }, [records]);
+  //   console.log(document);
+  // }, [document]);
 
   const customStyles = {
     dropdownIndicator: (base) => ({
@@ -82,7 +94,14 @@ export default function DatabaseControls() {
     axios
       .get(process.env.REACT_APP_READ_CONTROLS)
       .then(async (response) => {
-        setRecords({ ...records, retrieved: response.data, displayed: [] });
+        setChoice("");
+
+        setRecords({
+          ...records,
+          retrieved: response.data,
+          displayed: [],
+          selected: [],
+        });
       })
       .catch((err) => {
         console.log(err, "errors");
@@ -90,21 +109,14 @@ export default function DatabaseControls() {
   };
 
   const openPopup = async (location, name, id) => {
-    setDocument({ ...document, id: id, name: name });
-    setDisplay((previousStates) => ({
-      ...previousStates,
-      [location]: true,
-    }));
+    setDocument((previous) => ({ ...previous, id: id, name: name }));
+    setDisplay({ ...display, [location]: true });
   };
 
-
   const update = async () => {
-    setDisplay((previousStates) => ({
-      ...previousStates,
-      update: false,
-    }));
+    setDisplay({ ...display, update: false });
     axios
-      .post(process.env.REACT_APP_UPDATE_CONTROLS, { reasons: lines.reasons })
+      .post(process.env.REACT_APP_UPDATE_CONTROLS, { record: document })
       .then(async (response) => {
         onLoad();
       })
@@ -114,17 +126,12 @@ export default function DatabaseControls() {
   };
 
   const create = async () => {
-    setDisplay((previousStates) => ({
-      ...previousStates,
-      create: false,
-    }));
+    setDisplay({ ...display, create: false });
 
     axios
       .post(process.env.REACT_APP_CREATE_CONTROLS, { record: document })
       .then(async (response) => {
-        console.log(response.data);
         onLoad();
-        
       })
       .catch((err) => {
         console.log(err, "errors");
@@ -132,20 +139,16 @@ export default function DatabaseControls() {
   };
 
   const deleted = async () => {
-    // setDisplay((previousStates) => ({
-    //   ...previousStates,
-    //   popup: { ...previousStates.popup, delete: false },
-    // }));
-    // axios
-    //   .post(process.env.REACT_APP_DELETE_CONTROLS, { reasons: lines.reasons })
-    //   .then(async (response) => {
-    //     console.log(response.data);
-    //     onLoad();
-    //     reset();
-    //   })
-    //   .catch((err) => {
-    //     console.log(err, "errors");
-    //   });
+    setDisplay({ ...display, delete: false });
+    axios
+      .post(process.env.REACT_APP_DELETE_CONTROLS, { record: document })
+      .then(async (response) => {
+        console.log(response.data);
+        onLoad();
+      })
+      .catch((err) => {
+        console.log(err, "errors");
+      });
   };
 
   return (
@@ -168,7 +171,9 @@ export default function DatabaseControls() {
           onChange={(e) => {
             setChoice(e.label);
           }}
-        ></Select>
+        >
+          {choice}
+        </Select>
       </Box>
       <Box
         style={{
@@ -186,12 +191,7 @@ export default function DatabaseControls() {
               color: "rgb(250, 230, 12)",
               background: "rgb(177, 81, 42)",
             }}
-            onClick={() =>
-              setDisplay((previousStates) => ({
-                ...previousStates,
-                create: true,
-              }))
-            }
+            onClick={() => setDisplay({ ...display, create: true })}
           >
             {" "}
             ADD {choice}
@@ -224,12 +224,7 @@ export default function DatabaseControls() {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         open={display.create}
-        onClose={() =>
-          setDisplay((previousStates) => ({
-            ...previousStates,
-            create: false,
-          }))
-        }
+        onClose={() => setDisplay({ ...display, create: false })}
         style={{ textAlign: "center", left: "40vw", top: "25vh" }}
       >
         <div
@@ -249,12 +244,7 @@ export default function DatabaseControls() {
                 color: "red",
                 fontSize: "10px",
               }}
-              onClick={() =>
-                setDisplay((previousStates) => ({
-                  ...previousStates,
-                  create: false,
-                }))
-              }
+              onClick={() => setDisplay({ ...display, create: false })}
             >
               x
             </Button>
@@ -272,9 +262,12 @@ export default function DatabaseControls() {
                 textAlign: "center",
               }}
               onChange={(e) => {
-                setDocument({ ...document, name: e.target.value });
+                setDocument((previous) => ({
+                  ...previous,
+                  name: e.target.value,
+                }));
               }}
-              defaultValue={lines.reasons.reason}
+              defaultValue={document.name}
             ></input>
           </Box>
           <Box marginTop="20px" style={{ display: "flex" }}>
@@ -294,7 +287,7 @@ export default function DatabaseControls() {
               options={lineNames}
               placeholder="Select the line"
               onChange={(e) => {
-                setDocument({ ...document, id: e.value });
+                setDocument((previous) => ({ ...previous, id: e.value }));
               }}
             ></Select>
           </Box>
@@ -322,12 +315,7 @@ export default function DatabaseControls() {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         open={display.update}
-        onClose={() =>
-          setDisplay((previousStates) => ({
-            ...previousStates,
-            update: false,
-          }))
-        }
+        onClose={() => setDisplay({ ...display, update: false })}
         style={{ textAlign: "center", left: "40vw", top: "25vh" }}
       >
         <div
@@ -348,12 +336,7 @@ export default function DatabaseControls() {
                 color: "red",
                 fontSize: "10px",
               }}
-              onClick={() =>
-                setDisplay((previousStates) => ({
-                  ...previousStates,
-                  update: false,
-                }))
-              }
+              onClick={() => setDisplay({ ...display, update: false })}
             >
               x
             </Button>
@@ -366,13 +349,8 @@ export default function DatabaseControls() {
               fontSize: "20pt",
               textAlign: "center",
             }}
-            onChange={(e) =>
-              setLines((previousStates) => ({
-                ...previousStates,
-                reasons: { ...previousStates.reasons, reason: e.target.value },
-              }))
-            }
-            defaultValue={lines.reasons.reason}
+            onChange={(e) => setDocument({ ...document, name: e.target.value })}
+            defaultValue={document.name}
           ></textarea>
           <Box style={{ display: "flex", justifyContent: "center" }}>
             <Button
@@ -392,12 +370,7 @@ export default function DatabaseControls() {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         open={display.delete}
-        onClose={() =>
-          setDisplay((previousStates) => ({
-            ...previousStates,
-            delete: false,
-          }))
-        }
+        onClose={() => setDisplay({ ...display, delete: false })}
         style={{ textAlign: "center", left: "40vw", top: "25vh" }}
       >
         <div
@@ -418,17 +391,12 @@ export default function DatabaseControls() {
                 color: "red",
                 fontSize: "10px",
               }}
-              onClick={() =>
-                setDisplay((previousStates) => ({
-                  ...previousStates,
-                  delete: false,
-                }))
-              }
+              onClick={() => setDisplay({ ...display, delete: false })}
             >
               x
             </Button>
           </Box>
-          <h2>{lines.reasons.reason}</h2>
+          <h2>{document.name}</h2>
           <p style={{ fontSize: "large" }}>Are you sure you want to delete?</p>
 
           <Box style={{ display: "flex", justifyContent: "space-evenly" }}>
@@ -436,12 +404,7 @@ export default function DatabaseControls() {
               color="success"
               variant="contained"
               size="large"
-              onClick={() =>
-                setDisplay((previousStates) => ({
-                  ...previousStates,
-                  delete: false,
-                }))
-              }
+              onClick={() => setDisplay({ ...display, delete: false })}
             >
               NO
             </Button>
@@ -470,14 +433,11 @@ export default function DatabaseControls() {
               Edit
             </TableCell>
             <TableCell sx={{ background: "black", color: "white" }}>
-              Line Name
-            </TableCell>
-            <TableCell sx={{ background: "black", color: "white" }}>
               Line #
             </TableCell>
           </TableRow>
 
-          {records.displayed?.length ? (
+          {records.displayed?.length && choice ? (
             <>
               {records.displayed.map((rows, index) => {
                 return (
@@ -508,11 +468,6 @@ export default function DatabaseControls() {
                         {" "}
                         O
                       </button>
-                    </TableCell>
-                    <TableCell
-                      sx={{ background: "white", border: "1px solid black" }}
-                    >
-                      {lines.line.name}
                     </TableCell>
                     <TableCell
                       sx={{ background: "white", border: "1px solid black" }}
