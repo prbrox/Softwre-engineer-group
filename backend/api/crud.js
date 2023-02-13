@@ -2,7 +2,6 @@ const connection = require("../db/oldDatabase");
 
 //inserts supervisor into table
 const Create = (res, record) => {
-    record.database = "";
   try {
     switch (record.database) {
       case "equipment":
@@ -15,16 +14,15 @@ const Create = (res, record) => {
         record.query = `insert ${record.database}(Metric, deleted) values (${record.name}, 0)`;
         break;
       default:
-        record.query = "select * from equipment"
+        record.query = "select * from equipment";
         break;
-      }
-      
-    connection.query(record.query, (results)=>{
-      console.log(results)
+    }
+
+    connection.query(`${record.query}`, (result, err) => {
+      res.sendStatus(200);
     });
-    res.send(200);
   } catch (error) {
-    res.send(400);
+    res.sendStatus(400);
   }
 };
 
@@ -93,30 +91,29 @@ const Read = (res) => {
 };
 
 //change the supervisor's name
-const Update = (res, reasons) => {
-  console.log(reasons);
-//   try {
-//     connection.query(
-//       `update equipment set equipment = '${reasons.reason}' where id = ${reasons.id}`,
-//       (err, result) => {
-//         res.send(200, result.changedRows);
-//       }
-//     );
-//   } catch (error) {
-//     res.send(400, "error", error);
-//   }
+const Update = (res, record) => {
+  try {
+    record.query = `update ${record.database} set ${record.rowName} = '${record.name}' where id =${record.id}`;
+
+    connection.query(record.query, (err, result) => {
+        res.sendStatus(400)
+    });
+  } catch (error) {
+    res.send(400, "error", error);
+  }
 };
 
 //deletes supervisor
-const Delete = (res, document) => {
-  console.log(document);
-  // try {
-  //     console.log(reasons)
-  //     connection.query(`delete from equipment where id = ${reasons.id}`)
-  //     res.send(200, "Deleted")
-  // } catch (error) {
-  //     res.send(400, error)
-  // }
+const Delete = (res, record) => {
+  try {
+    record.query = `update ${record.database} set deleted = 1 where id =${record.id}`;
+
+    connection.query(`${record.query}`, (result, err) => {
+      res.sendStatus(200);
+    });
+  } catch (error) {
+    res.send(400, error);
+  }
 };
 
 module.exports = {
