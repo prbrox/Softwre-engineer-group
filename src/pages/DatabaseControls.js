@@ -210,7 +210,7 @@ export default function DatabaseControls() {
             onChange={(e) => {
               setRecords((prev) => ({
                 ...prev,
-                displayed: records.selected.filter(
+                displayed: records.selected?.filter(
                   (rows) => rows.lineNumber === Number(e.value)
                 ),
               }));

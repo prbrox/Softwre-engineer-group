@@ -1,7 +1,16 @@
 const connection = require("../db/oldDatabase");
 
+const asyncHandler = (fn) => (res, record) => {
+  try {
+    fn(res, record);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send("error");
+  }
+};
+
 //inserts supervisor into table
-const Create = (res, record) => {
+const Create = asyncHandler((res, record) => {
   try {
     switch (record.database) {
       case "equipment":
@@ -24,12 +33,12 @@ const Create = (res, record) => {
   } catch (error) {
     res.sendStatus(400);
   }
-};
+});
 
 //read all names from the equipment's table
-const Read = (res) => {
+const Read = asyncHandler((res) => {
   try {
-    console.log("read");
+    //console.log("read");
     //console.log(query)
     var data = { equipment: [{}], reasons: [], category: [] };
 
@@ -88,23 +97,23 @@ const Read = (res) => {
   } catch (error) {
     res.status(400).send(error);
   }
-};
+});
 
 //change the supervisor's name
-const Update = (res, record) => {
+const Update = asyncHandler((res, record) => {
   try {
     record.query = `update ${record.database} set ${record.rowName} = '${record.name}' where id =${record.id}`;
 
     connection.query(record.query, (err, result) => {
-        res.sendStatus(400)
+      res.sendStatus(400);
     });
   } catch (error) {
     res.send(400, "error", error);
   }
-};
+});
 
 //deletes supervisor
-const Delete = (res, record) => {
+const Delete = asyncHandler((res, record) => {
   try {
     record.query = `update ${record.database} set deleted = 1 where id =${record.id}`;
 
@@ -114,7 +123,7 @@ const Delete = (res, record) => {
   } catch (error) {
     res.send(400, error);
   }
-};
+});
 
 module.exports = {
   Create: Create,
