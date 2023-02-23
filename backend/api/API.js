@@ -1,4 +1,6 @@
 const connection = require("../db/oldDatabase");
+const connection = require("../database/db");
+const trycatch = require("../../src/error/error-handling.js");
 
 const asyncHandler = (fn) => (res, record) => {
   try {
@@ -8,6 +10,88 @@ const asyncHandler = (fn) => (res, record) => {
     res.status(400).send("error");
   }
 };
+
+
+
+//inserts supervisor into table
+const Create = (name, res) => {
+  try {
+    connection.query(`insert into Supervisors(name) values ('${name}')`);
+    res.send("inserted");
+  } catch (error) {
+    res.send("error", error);
+  }
+};
+
+//read all names from the supervisor's table
+const Read = (res) => {
+  try {
+    const empty = [];
+    connection.query(`SELECT * from Supervisors`, (err, result) => {
+      while (result.length) {
+        empty.push(result.shift().Name);
+      }
+      res.send(empty);
+    });
+  } catch (error) {
+    res.send("error", error);
+  }
+};
+
+//change the supervisor's name
+const Update = (name, update, res) => {
+  try {
+    connection.query(
+      `UPDATE Supervisors SET name = '${update}' where name = '${name}' limit 1`
+    );
+    res.send("updated");
+  } catch (error) {
+    res.send("error", error);
+  }
+};
+
+//deletes supervisor
+const Delete = trycatch((name, res) => {
+  try {
+    connection.query(`Delete from Supervisors where name ='${name}' limit 1`);
+    res.send("Deleted");
+  } catch (error) {
+    res.send("error", error);
+  }
+});
+
+const WriteReport = (report, res) => {
+  try {
+    connection.query(
+      `insert into Reports(date, supervisor, observer, type, observationType, feedback, actions) values('${report.date}', '${report.supervisor}', '${report.observer}', '${report.type}', '${report.observationType}', '${report.feedback}', '${report.actions}')`
+    );
+    res.send("Wrote");
+  } catch (error) {
+    res.send("error", error);
+  }
+};
+
+const ReadReports = (res) => {
+  try {
+    connection.query(`SELECT * from Reports`, (err, result) => {
+      if (err) res.send("error");
+      res.send(result);
+    });
+  } catch (error) {
+    console.log("error", error);
+  }
+};
+
+const CheckPass = (pass, res) => {
+  try {
+    const response = pass === process.env.REACT_APP_PASS;
+    if (response) res.send({ roles: 155 });
+    res.send({ roles: 0 });
+  } catch (error) {
+    res.send("error", error);
+  }
+};
+
 
 //inserts supervisor into table
 const Create = asyncHandler((res, record) => {
@@ -130,4 +214,12 @@ module.exports = {
   Read: Read,
   Update: Update,
   Delete: Delete,
+
+  Create: Create,
+  Read: Read,
+  Update: Update,
+  Delete: Delete,
+  WriteReport: WriteReport,
+  ReadReports: ReadReports,
+  CheckPass: CheckPass,
 };

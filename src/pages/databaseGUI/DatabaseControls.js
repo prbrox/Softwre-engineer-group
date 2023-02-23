@@ -9,10 +9,9 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Select from "react-select";
-import axios from "../api/axios";
-import choiceOptions from "../components/choices";
-import lineNames from "../components/LineNames";
-import Navbar from "../components/Navbar";
+import axios from "../../api/axios";
+import choiceOptions from "../../components/choices";
+import lineNames from "../../components/LineNames";
 export default function DatabaseControls() {
   useEffect(() => {
     onLoad();
@@ -153,7 +152,6 @@ export default function DatabaseControls() {
 
   return (
     <>
-      <Navbar />
       <Box
         style={{
           display: "flex",
