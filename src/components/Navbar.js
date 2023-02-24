@@ -11,6 +11,9 @@ export default function Navbar() {
                     <Button variant="contained" size='large' href="/" color="secondary" style={{ margin: 20 }}>
                         Home
                     </Button>
+                    <Button variant="contained" size='large' href="/LayoutForm" color="secondary" style={{ margin: 20 }}>
+                        Layout Form
+                    </Button>
 
                 </Toolbar>
             </AppBar>

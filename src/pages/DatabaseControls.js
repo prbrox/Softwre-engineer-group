@@ -206,7 +206,7 @@ export default function DatabaseControls() {
             id="selector"
             className="filter-selector"
             styles={customStyles}
-            options={lineNames}
+            options={lineNames.controls}
             placeholder="Select the line"
             onChange={(e) => {
               setRecords((prev) => ({
@@ -285,7 +285,7 @@ export default function DatabaseControls() {
             <Select
               className="modal-select"
               styles={customStyles}
-              options={lineNames}
+              options={lineNames.controls}
               placeholder="Select the line"
               onChange={(e) => {
                 setDocument((previous) => ({ ...previous, id: e.value }));
