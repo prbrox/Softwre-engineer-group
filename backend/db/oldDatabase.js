@@ -1,14 +1,19 @@
-const mysql = require("mysql");
 require("dotenv").config();
+const mysql = require("mysql");
 
-//connect to the database
-const connection = mysql.createConnection({
+const asyncHandler = require("../api/errorHandler");
+
+const pool = mysql.createPool({
   host: process.env.REACT_APP_OLD_HOSTNAME,
   user: process.env.REACT_APP_OLD_USERNAME,
   password: process.env.REACT_APP_OLD_PASSWORD,
-  database: process.env.REACT_APP_DB_QUALITY,
+  database: process.env.REACT_APP_OLLD_DB,
 });
 
-connection.connect();
+pool.getConnection((err, connection) => {
+  if (err) console.log(err);
+  console.log("successfully connected");
+  connection.release();
+});
 
-module.exports = connection;
+module.exports = pool;

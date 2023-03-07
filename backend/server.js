@@ -1,36 +1,37 @@
 const express = require("express");
 const app = express();
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const connect = require('./db/oldDatabase');
-const API = require('./api/API');
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const connect = require("./db/oldDatabase");
+const crud = require("./api/API");
+const asyncHandler = require("./api/errorHandler");
 
-const { Create, Read, Update, Delete } = API;
+const { Create, Read, Update, Delete } = crud;
 
-app.use(cors({
-    origin: "*"
-}))
-
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get("/get-controls", (req, res) => {
+  Read(res);
+});
+app.post("/edit-controls", (req, res) => {
+  Update(res, req.body.record);
+});
+app.post("/remove-controls", (req, res) => {
+  Delete(res, req.body.record);
+});
+app.post("/add-controls", (req, res) => {
+  Create(res, req.body.record);
+});
 
-app.get("_return-supervisor-list", (req, res) => Read(res));
-app.get("/read-from-report", (req, res) => ReadReports(res));
-app.post("/write-report", (req, res) => WriteReport(req.body.report, res));
-app.post("/create-supervisors", (req, res) => Create(req.body.name, res));
-app.post("/check-passwords", (req, res) => CheckPass(req.body.password, res));
+var PORT = Number(process.env.PORT) + 1 || 3050;
 
-
-app.get("/get-controls", (req, res) => { Read(res); })
-app.post("/edit-controls", (req, res) => { Update(res, req.body.record); })
-app.post("/remove-controls", (req, res) => { Delete(res, req.body.record); })
-app.post("/add-controls", (req, res) => { Create(res, req.body.record); })
-
-
-var PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-    console.log(`the server started on Port : ${PORT}`)
-
-})
+  console.log(`the server started on Port : ${PORT}`);
+});

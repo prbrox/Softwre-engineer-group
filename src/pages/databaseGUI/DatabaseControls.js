@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import Select from "react-select";
+import Select from "react-select/creatable";
 import axios from "../../api/axios";
 import choiceOptions from "../../components/choices";
 import lineNames from "../../components/LineNames";
@@ -152,6 +152,7 @@ export default function DatabaseControls() {
 
   return (
     <>
+      <title>Database Controls</title>
       <Box
         style={{
           display: "flex",
