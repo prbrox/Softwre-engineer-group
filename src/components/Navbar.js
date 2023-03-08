@@ -26,11 +26,11 @@ export default function Navbar() {
           <Button
             variant="contained"
             size="large"
-            href="/Hazardous"
+            href="/flangeLayout"
             color="secondary"
             style={{ margin: 20 }}
           >
-            Hazardous Conditions
+            Flange Layout
           </Button>
         </Toolbar>
       </AppBar>
