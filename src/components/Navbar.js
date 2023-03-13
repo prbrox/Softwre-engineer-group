@@ -26,11 +26,11 @@ export default function Navbar() {
           <Button
             variant="contained"
             size="large"
-            href="/flangeLayout"
+            href="/LayoutForm"
             color="secondary"
             style={{ margin: 20 }}
           >
-            Flange Layout
+            Layout Form
           </Button>
         </Toolbar>
       </AppBar>

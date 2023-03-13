@@ -1,68 +1,93 @@
-const lineNames = [
+const lineNames = {
+  flangeLayout: [
+    { label: "Line 1", value: "1" },
     {
-        label: "Line 1 Final Flange",
-        value: '1',
+      label: "Line 2",
+      value: "2",
     },
     {
-        label: "Line 3 Final Flange",
-        value: '3',
+      label: "Line 4",
+      value: "4",
     },
     {
-        label: "Line 4 Final Flange",
-        value: '4',
+      label: "CAPE",
+      value: "5",
     },
     {
-        label: "CAPE",
-        value: '5',
+      label: "Resaw",
+      value: "6",
+    },,
+    {
+      label: "Stock",
+      value: "7",
+    },
+  ],
+  controls: [
+    {
+      label: "Line 1 Final Flange",
+      value: "1",
     },
     {
-        label: "Line 1 Nailer",
-        value: '6',
+      label: "Line 3 Final Flange",
+      value: "3",
     },
     {
-        label: "Line 2 Nailer",
-        value: '7',
+      label: "Line 4 Final Flange",
+      value: "4",
     },
     {
-        label: "Line 3 Nailer",
-        value: '8',
+      label: "CAPE",
+      value: "5",
     },
     {
-        label: "Line 4 Nailer",
-        value: '9',
+      label: "Line 1 Nailer",
+      value: "6",
     },
     {
-        label: "Staves",
-        value: '20',
+      label: "Line 2 Nailer",
+      value: "7",
     },
     {
-        label: "Layup Table L3",
-        value: '30',
+      label: "Line 3 Nailer",
+      value: "8",
     },
     {
-        label: "Resaw",
-        value: '40',
+      label: "Line 4 Nailer",
+      value: "9",
     },
     {
-        label: "Cutup Saw",
-        value: '50',
+      label: "Staves",
+      value: "20",
     },
     {
-        label: "Opt Saw",
-        value: '51',
+      label: "Layup Table L3",
+      value: "30",
     },
     {
-        label: "Plywood L1",
-        value: '60',
+      label: "Resaw",
+      value: "40",
     },
     {
-        label: "Plywood L3",
-        value: '62',
+      label: "Cutup Saw",
+      value: "50",
     },
     {
-        label: "Line 1 Bolts",
-        value: '70',
+      label: "Opt Saw",
+      value: "51",
     },
-]
+    {
+      label: "Plywood L1",
+      value: "60",
+    },
+    {
+      label: "Plywood L3",
+      value: "62",
+    },
+    {
+      label: "Line 1 Bolts",
+      value: "70",
+    },
+  ],
+};
 
 module.exports = lineNames;
