@@ -1,26 +1,20 @@
 const lineNames = {
   flangeLayout: [
     { label: "Line 1", value: "1" },
-    {
-      label: "Line 2",
-      value: "2",
-    },
-    {
-      label: "Line 4",
-      value: "4",
-    },
-    {
-      label: "CAPE",
-      value: "5",
-    },
-    {
-      label: "Resaw",
-      value: "6",
-    },,
-    {
-      label: "Stock",
-      value: "7",
-    },
+    { label: "Line 2", value: "2" },
+    { label: "Line 4", value: "4" },
+    { label: "CAPE", value: "5" },
+    { label: "Resaw", value: "6" },
+    { label: "Stock", value: "7" },
+  ],
+  rowNumbers: [
+    { label: "4", value: "4" },
+    { label: "5", value: "5" },
+    { label: "6", value: "6" },
+    { label: "7", value: "7" },
+    { label: "8", value: "8" },
+    { label: "9", value: "9" },
+    { label: "10", value: "10" },
   ],
   controls: [
     {

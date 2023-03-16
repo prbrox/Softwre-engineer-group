@@ -60,5 +60,13 @@ body{
   font-size: 50%;
 
 }
+.layout-rows-selector{
+  top: -45px;
+    width: 150px;
+    left: 55px;
+    font-size: 80%;
+}
+
+
 
 /*--------------------Layout Form End------------------ */

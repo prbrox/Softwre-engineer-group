@@ -3,7 +3,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/databaseGUI/Dashboard";
 import DatabaseControls from "./pages/databaseGUI/DatabaseControls";
-import LayoutForm from "./pages/LayoutForm";
+import LayoutForm from "./pages/layoutForm/LayoutForm";
 
 function App() {
   return (
