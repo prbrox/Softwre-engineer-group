@@ -156,7 +156,7 @@ export default function LayoutForm() {
               {choice}
             </Select>
           </Box>
-          <Box sx={{ position: "relative", left: -200, top: -80 }}>
+          <Box sx={{ position: "relative",float: "left", left: -200, top: -80 }}>
             <Table
               aria-label="simple table"
               sx={{
@@ -224,7 +224,7 @@ export default function LayoutForm() {
               </TableBody>
             </Table>
           </Box>
-          <Box sx={{ position: "relative", left: "30vw", top: -400 }}>
+          <Box sx={{ position: "relative", float: "right", top:-200 }}>
             <Form />
           </Box>
         </Box>
