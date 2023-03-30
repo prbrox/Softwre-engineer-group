@@ -18,7 +18,7 @@ export default function Angles(props) {
     const { name, condition } = props;
     return [...Array(parseInt(condition))].map((e, i) => {
       return (
-        <TableCell key={name + i} sx={{ marginRight: 500 }}>
+        <TableCell key={name + i} sx={{ marginRight: 500, margin: 0 }}>
           <h4
             style={{
               display: "flex",
