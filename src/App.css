@@ -66,7 +66,7 @@ body{
     left: 55px;
     font-size: 80%;
 }
-html {
+/* html {
   height: 100%;
   width: 100%;
 }
@@ -74,16 +74,11 @@ html {
 input[type=numbers],
 select {
   font-size: 10px;
-  /* Set the font size */
   padding: 3px 5px;
-  /* Set the padding */
   height: 20px;
-  /* Set the height */
   width: 40px;
   line-height: 1;
-  /* Set the line height */
   border-radius: 2px;
-  /* Set the border radius */
   display: inline-block;
   border: 1px solid #ede8e8;
   box-sizing: border-box;
@@ -140,5 +135,5 @@ td {
 
 tr.last {
   border-right: none;
-}
+} */
 /*--------------------Layout Form End------------------ */
