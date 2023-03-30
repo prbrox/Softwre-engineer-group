@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  TextField,
-  Typography,
-  TableCell,
-  TableRow,
-} from "@mui/material";
+import { TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,32 +19,33 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Rows(props) {
   const { totalRows, rowName } = props;
-    const classes = useStyles();
-
-
-  
+  const classes = useStyles();
 
   function Cellrows(props) {
-    const { name, condition} = props;
+    const { name, condition } = props;
     return [...Array(parseInt(condition))].map((e, i) => {
       return (
-        <TableCell key={name + i}>
-         <TextField className={classes.topRow} variant="outlined" size="small" />
-        </TableCell>
+        <th key={name + i}>
+          <TextField
+            className={classes.topRow}
+            variant="outlined"
+            size="small"
+          />
+        </th>
       );
     });
   }
-    
-    return (
-      <>
-        <TableRow>
-          <TableCell>{rowName}</TableCell>
-          {totalRows ? (
-            <Cellrows name="textfield1" condition={totalRows}></Cellrows>
-          ) : (
-            <></>
-          )}
-        </TableRow>
-      </>
-    );
+
+  return (
+    <>
+      <tr>
+        <th>{rowName}</th>
+        {totalRows ? (
+          <Cellrows name="textfield1" condition={totalRows}></Cellrows>
+        ) : (
+          <></>
+        )}
+      </tr>
+    </>
+  );
 }
