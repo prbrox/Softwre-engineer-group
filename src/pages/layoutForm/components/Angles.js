@@ -1,11 +1,20 @@
 import { TableCell, TableRow } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles((theme) => ({
- 
   rows: {
     height: "50px !important",
     minHeight: "30px",
+  },
+  cell: {
+    //
+    "& .MuiTableCell-root": {
+
+      padding: "0px",
     },
+    marginRight: 500,
+    margin: 0,
+    padding: 0,
+  },
 }));
 
 export default function Angles(props) {
@@ -18,7 +27,7 @@ export default function Angles(props) {
     const { name, condition } = props;
     return [...Array(parseInt(condition))].map((e, i) => {
       return (
-        <TableCell key={name + i} sx={{ marginRight: 500, margin: 0 }}>
+        <TableCell key={name + i} className={classes.cell}>
           <h4
             style={{
               display: "flex",

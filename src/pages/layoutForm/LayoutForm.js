@@ -40,6 +40,18 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
     fontSize: "0.7rem",
   },
+  cells: {
+    "&.css-1ex1afd-MuiTableCell-root": {
+      margin: 0,
+      padding: 0,
+    },
+    margin: 0,
+    padding: 0,
+  },
+  center: {
+    display: "flex",
+    justifyContent: "center",
+  },
 }));
 
 export default function LayoutForm() {
@@ -74,6 +86,7 @@ export default function LayoutForm() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          left: 0,
         }}
       >
         <Box>
@@ -173,30 +186,30 @@ export default function LayoutForm() {
               <TableBody>
                 <TableRow>
                   {/*<TableCell sx={{ background: "black", color: 'white' }}>Delete</TableCell> */}
-                  <TableCell>
-                    <h4>Plys</h4>
+                  <TableCell className={classes.cells}>
+                    <h4 className={classes.center}>Plys</h4>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className={classes.cells}>
                     <TextField
                       className={classes.topRow}
                       variant="outlined"
                       size="small"
                     />
                   </TableCell>
-                  <TableCell>
-                    <h4>Thick</h4>
+                  <TableCell className={classes.cells}>
+                    <h4 className={classes.center}>Thick</h4>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className={classes.cells}>
                     <TextField
                       className={classes.topRow}
                       variant="outlined"
                       size="small"
                     />
                   </TableCell>
-                  <TableCell>
-                    <h4>Qty</h4>
+                  <TableCell className={classes.cells}>
+                    <h4 className={classes.center}>Qty</h4>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className={classes.cells}>
                     <TextField
                       className={classes.topRow}
                       variant="outlined"
@@ -207,10 +220,10 @@ export default function LayoutForm() {
                       }}
                     />
                   </TableCell>
-                  <TableCell>
+                  <TableCell className={classes.cells}>
                     <h4>OverCut:</h4>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className={classes.cells}>
                     <TextField
                       className={classes.topRow}
                       variant="outlined"
@@ -226,14 +239,15 @@ export default function LayoutForm() {
                 <Rows rowName="# Pcs Required" totalRows={rowNumber} />
               </TableBody>
             </Table>
-            <Box>
-              <Accumulative /> <Accumulative /> <Accumulative />
-              <Accumulative /> <Loss />
+            <Box alignSelf={"center"}>
+              <Accumulative totalRows={rowNumber} rowName="accum1" />
+              <Accumulative totalRows={rowNumber} rowName="accum2" />
+              <Accumulative totalRows={rowNumber} rowName="accum3" />
+              <Accumulative totalRows={rowNumber} rowName="accum4" />
             </Box>
           </Box>
           <Box sx={{ position: "relative", float: "right", top: -200 }}>
             <Form />
-            
           </Box>
         </Box>
       </Box>

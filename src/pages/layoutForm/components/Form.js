@@ -1,8 +1,8 @@
 function Form() {
   return (
     <div>
-      <div class="container">
-        <form class="form">
+      <div className="container">
+        <form className="form">
           <label>Waste/Circle</label>
           <input type="text" />
           <br />
@@ -41,33 +41,33 @@ function Form() {
         <button>Delete Record</button>
       </div>
 
-      <div class="container">
+      <div className="container">
         <div>
-          <h3 class="title">Work orders</h3>
-          <form class="form">
-            <label class="label">Work Order 1</label>
+          <h3 className="title">Work orders</h3>
+          <form className="form">
+            <label className="label">Work Order 1</label>
             <input type="text" />
             <br />
             <br/>
-            <label class="label" >Work Order 2</label> <input type="text" />
+            <label className="label" >Work Order 2</label> <input type="text" />
             <br/>
             <br/>
-            <label class="label">Work Order 3</label>
+            <label className="label">Work Order 3</label>
           
             <input type="text" />
             <br />
             <br/>
-            <label class="label">Work Order 4</label> <input type="text" />
+            <label className="label">Work Order 4</label> <input type="text" />
             <br />
             <br/>
-            <label class="label">Work Order 5</label> <input type="text" />
+            <label className="label">Work Order 5</label> <input type="text" />
           </form>
         </div>
-        <button class="pdf-button">PDF</button>
+        <button className="pdf-button">PDF</button>
       </div>
 
       <br />
-      <div class="group-of-buttons">
+      <div className="group-of-buttons">
         <button>print</button>
         <button>reports</button>
         <button>PDF</button>
@@ -75,9 +75,9 @@ function Form() {
 
       <br />
 
-      <div class="container">
-        <div class="block">
-          <label class="label1">Error </label>
+      <div className="container">
+        <div className="block">
+          <label className="label1">Error </label>
           <textarea name="error" id="" cols="30" rows="10"></textarea>
         </div>
       </div>
