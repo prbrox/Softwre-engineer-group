@@ -149,3 +149,31 @@ tr.last {
   border-right: none;
 } */
 /*--------------------Layout Form End------------------ */
+
+/* Accumulative css */
+.border{
+ 
+ border: 2px solid black;
+ width:10vw;
+ display: inline-block;
+}
+.in-line{
+  display: inline-block;
+  
+ padding: 10px;
+  border: 2px solid black;
+  display: inline-flex;
+
+}
+.left{
+  position: absolute;
+  right : 10px;
+
+}
+
+.parent{
+  justify-content: space-around;
+}
+.space-around{
+ margin-left: 20px;
+}
