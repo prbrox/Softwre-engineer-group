@@ -77,6 +77,75 @@ body{
  button{
  margin: auto;
   padding: 5px;
+ }
+/* html {
+  height: 100%;
+  width: 100%;
 }
 
+input[type=numbers],
+select {
+  font-size: 10px;
+  padding: 3px 5px;
+  height: 20px;
+  width: 40px;
+  line-height: 1;
+  border-radius: 2px;
+  display: inline-block;
+  border: 1px solid #ede8e8;
+  box-sizing: border-box;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+label-fname {
+  align-items: center;
+  text-align: right;
+}
+
+fieldset {
+  border: 1px solid #ddd;
+}
+
+form {
+  overflow: hidden;
+}
+
+input {
+  float: center;
+  clear: both;
+}
+
+div.settings {
+  grid-template-columns: max-content max-content;
+  grid-gap: 5px;
+}
+
+div.settings label {
+  text-align: right;
+}
+
+table {
+  width: 150px;
+  height: 50px;
+}
+
+tr {
+  text-align: center;
+}
+
+table,
+td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+}
+
+tr.last {
+  border-right: none;
+} */
 /*--------------------Layout Form End------------------ */

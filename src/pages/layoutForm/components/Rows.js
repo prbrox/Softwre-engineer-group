@@ -25,7 +25,7 @@ export default function Rows(props) {
     const { name, condition } = props;
     return [...Array(parseInt(condition))].map((e, i) => {
       return (
-        <th key={name + i}>
+        <th key={name + i} style={{width: 50}}>
           <TextField
             className={classes.topRow}
             variant="outlined"

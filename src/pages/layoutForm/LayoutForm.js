@@ -14,8 +14,9 @@ import lineNames from "../../components/LineNames";
 import Rows from "./components/Rows";
 import Angles from "./components/Angles";
 import { React, useState } from "react";
-import Form from "../../components/Form";
-
+import Form from "./components/Form";
+import Loss from "./components/Loss";
+import Accumulative from "./components/Accumulative";
 const useStyles = makeStyles((theme) => ({
   topRow: {
     borderStyle: "groove",
@@ -156,7 +157,9 @@ export default function LayoutForm() {
               {choice}
             </Select>
           </Box>
-          <Box sx={{ position: "relative", left: -200, top: -80 }}>
+          <Box
+            sx={{ position: "relative", float: "left", left: -200, top: -80 }}
+          >
             <Table
               aria-label="simple table"
               sx={{
@@ -223,8 +226,12 @@ export default function LayoutForm() {
                 <Rows rowName="# Pcs Required" totalRows={rowNumber} />
               </TableBody>
             </Table>
+            <Box>
+              <Accumulative /> <Accumulative /> <Accumulative />
+              <Accumulative /> <Loss />
+            </Box>
           </Box>
-          <Box sx={{ position: "relative", left: "30vw", top: -400 }}>
+          <Box sx={{ position: "relative", float: "right", top: -200 }}>
             <Form />
             
           </Box>
