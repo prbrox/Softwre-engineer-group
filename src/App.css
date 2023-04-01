@@ -66,5 +66,17 @@ body{
     left: 55px;
     font-size: 80%;
 }
+.container{
+ display:flex;
+ text-align: right;
+  
+}
+
+ 
+
+ button{
+ margin: auto;
+  padding: 5px;
+}
 
 /*--------------------Layout Form End------------------ */

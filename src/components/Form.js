@@ -6,22 +6,29 @@ function Form() {
           <label>Waste/Circle</label>
           <input type="text" />
           <br />
+          <br/>
           <label>WULoss</label>
           <input type="text" />
           <br />
+          <br/>
           <label>WU Consumed</label>
           <input type="text" />
           <br />
+          <br/>
           <label>produced_WU</label> <input type="text" />
           <br />
+          <br/>
           <label>Customer</label>
           <input type="text" />
           <br />
+          <br/>
           <label>Job# </label>
           <input type="text" />
           <br />
+          <br/>
           <label>Page#</label> <input type="text" />
           <br />
+          <br/>
           <label>Go To:</label>
           <input list="example" />
           <datalist id="example">
@@ -38,17 +45,22 @@ function Form() {
         <div>
           <h3 class="title">Work orders</h3>
           <form class="form">
-            <label>Work Order 1</label>
+            <label class="label">Work Order 1</label>
             <input type="text" />
             <br />
-            <label>Work Order 2</label> <input type="text" />
-            <br />
-            <label>Work OrderS3</label>
+            <br/>
+            <label class="label" >Work Order 2</label> <input type="text" />
+            <br/>
+            <br/>
+            <label class="label">Work Order 3</label>
+          
             <input type="text" />
             <br />
-            <label>Work Order 4</label> <input type="text" />
+            <br/>
+            <label class="label">Work Order 4</label> <input type="text" />
             <br />
-            <label>Work Order 5</label> <input type="text" />
+            <br/>
+            <label class="label">Work Order 5</label> <input type="text" />
           </form>
         </div>
         <button class="pdf-button">PDF</button>
@@ -65,7 +77,7 @@ function Form() {
 
       <div class="container">
         <div class="block">
-          <label>Error Message </label>
+          <label class="label1">Error </label>
           <textarea name="error" id="" cols="30" rows="10"></textarea>
         </div>
       </div>
