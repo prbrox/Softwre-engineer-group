@@ -28,6 +28,9 @@ export default function Accumulative(props) {
   }
   return (
     <>
+    <div>
+    <div className="container1 ">
+      <div >
       <label for="fname">Dim</label> <label for="fname">Prep</label>
       <fieldset>
         {totalRows ? (
@@ -62,26 +65,27 @@ export default function Accumulative(props) {
           <option value="5.5">5.5</option>
         </select>
       </fieldset>
-      <div >
+      </div>
+      
+      <div className="item2" >
+       <div>
+        <div className="border">Loss</div >
+        <div className="border">#Bdls</div>
 
-        <div  >
-        <h4 className="in-line">Loss</h4>
-        <h4 className="in-line">#Bdls</h4>
-        </div>
-  <div>
-          <div className="border">
-           0</div >
+      </div>
+      <div>
+          <div className="border"> 0</div >
           <div className="border">0</div>
           </div>
-
-
           <div>
-          <div className="border">
-           0</div >
+          <div className="border"> 0</div >
           <div className="border">0</div>
           </div>
           <div className="border">Example </div>
       
+      </div>
+
+      </div>
       </div>
     </> 
   );

@@ -3,6 +3,31 @@ function Form() {
     <div>
       <div className="container">
         <form className="form">
+        <label>Date Added</label>
+          <input type="text" />
+          <br />
+          <br/> <label>Layout Rating</label>
+          <input type="text" />
+          <br />
+          <br/> <label>Consumed</label>
+          <input type="text" />
+          <br />
+          <br/> <label>Produced</label>
+          <input type="text" />
+          <br />
+          <br/> <label>Tecloss</label>
+          <input type="text" />
+          <br />
+          <br/> <label>Holtec loss</label>
+          <input type="text" />
+          <br />
+          <br/> <label>Holtec_Waste</label>
+          <input type="text" />
+          <br />
+          <br/> <label>circle_wu</label>
+          <input type="text" />
+          <br />
+          <br/>
           <label>Waste/Circle</label>
           <input type="text" />
           <br />
@@ -38,7 +63,7 @@ function Form() {
           </datalist>
         </form>
 
-        <button>Delete Record</button>
+        <button className="left">Delete Record</button>
       </div>
 
       <div className="container">
