@@ -86,11 +86,12 @@ export default function LayoutForm() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          left: 0,
+          position: "relative",
+          left: 100
         }}
       >
         <Box>
-          <h3 style={{ marginBottom: 0, position: "relative" }}>
+          <h3 style={{ }}>
             Flange Layout
           </h3>
           <Box style={{ position: "relative", height: "30px" }}>
