@@ -185,4 +185,21 @@ tr.last {
   display: flex;
   justify-content: center;
 }
+label{
+  margin: 14px;
+}
+.item1{
+  /* accumulative box */
+ float: left;
+}
+.item2{
+/* loss/#blds box */
+float: right;
+/* margin-top: 20px; */
 
+}
+.container1{
+  display: flex;
+  margin-left: 70px;
+  padding: 80px;
+}
