@@ -1,5 +1,5 @@
+import { Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-
 //acts as the css for the code
 const useStyles = makeStyles((theme) => ({
   cell: {
@@ -12,7 +12,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Accumulative(props) {
   const { totalRows, rowName } = props;
   const classes = useStyles();
+
   
+
   //generates input boxes based on the numebr of inputs
   function GenerateInputs(props) {
     const { name, numberOfInputs } = props;
@@ -20,17 +22,12 @@ export default function Accumulative(props) {
     return [...Array(parseInt(numberOfInputs))].map((e, i) => {
       return (
         //this is the element that will be rende, control it by changing the cell's css
-        <input key={name + i} className={classes.cell}>
-          
-        </input>
+        <input key={name + i} className={classes.cell}></input>
       );
     });
   }
   return (
     <>
-    <div>
-    <div className="container1 ">
-      <div >
       <label for="fname">Dim</label> <label for="fname">Prep</label>
       <fieldset>
         {totalRows ? (
@@ -65,28 +62,6 @@ export default function Accumulative(props) {
           <option value="5.5">5.5</option>
         </select>
       </fieldset>
-      </div>
-      
-      <div className="item2" >
-       <div>
-        <div className="border">Loss</div >
-        <div className="border">#Bdls</div>
-
-      </div>
-      <div>
-          <div className="border"> 0</div >
-          <div className="border">0</div>
-          </div>
-          <div>
-          <div className="border"> 0</div >
-          <div className="border">0</div>
-          </div>
-          <div className="border">Example </div>
-      
-      </div>
-
-      </div>
-      </div>
-    </> 
+    </>
   );
 }

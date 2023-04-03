@@ -7,9 +7,9 @@ const useStyles = makeStyles((theme) => ({
   },
   cell: {
     //
-    "& .MuiTableCell-root": {
-
-      padding: "0px",
+    "&.css-1ex1afd-MuiTableCell-root": {
+      margin: 0,
+      padding: 0,
     },
     marginRight: 500,
     margin: 0,

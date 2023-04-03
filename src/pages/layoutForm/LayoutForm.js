@@ -81,41 +81,48 @@ export default function LayoutForm() {
   return (
     <>
       <title>Layout Form</title>
+      {/*This is the main left box */}
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          left: 0,
+          justifyContent: "start",
+          width: "65vw",
+          float: "left",
+          minWidth: 700,
+          height: "80vh",
         }}
       >
-        <Box>
-          <h3 style={{ marginBottom: 0, position: "relative" }}>
-            Flange Layout
-          </h3>
-          <Box style={{ position: "relative", height: "30px" }}>
-            <h4>Dia</h4>
+        {/*giving relative position */}
+        <Box
+          sx={{
+            position: "relative",
+            left: "40%",
+            width: "20vw",
+          }}
+        >
+          <h3 style={{}}>Flange Layout</h3>
+          <div style={{ width: 90, height: 50 }}>
+            <h4 style={{ float: "left", marginTop: 8 }}>Dia</h4>
             <TextField
               variant="outlined"
               size="small"
               style={{
                 borderStyle: "groove",
                 width: "60px",
-                top: -55,
-                left: 55,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
+                float: "right",
               }}
             ></TextField>
-          </Box>
-          <Box
-            style={{
-              position: "relative",
-              height: "50px",
-            }}
-          >
-            <h5 style={{ marginTop: 10, marginRight: 10 }}>Line</h5>
+          </div>
+          <div style={{ width: 250 }}>
+            <h4
+              style={{
+                float: "left",
+                marginBottom: 0,
+                marginTop: 2,
+                width: 40,
+              }}
+            >
+              Line
+            </h4>
             <Select
               id="selector"
               className="layout-selector"
@@ -128,35 +135,18 @@ export default function LayoutForm() {
             >
               {choice}
             </Select>
-          </Box>
-
-          <Box sx={{ position: "relative", left: 500, top: -150 }}>
-            <Button
-              variant="contained"
-              sx={{ backgroundColor: "rgb(177, 81, 42)" }}
-            >
-              {" "}
-              {"<"}{" "}
-            </Button>
-            <Button
-              variant="contained"
-              sx={{
-                backgroundColor: "rgb(177, 81, 42)",
+          </div>
+          <div style={{ width: 250, marginTop: 5 }}>
+            <h5
+              style={{
+                float: "left",
+                marginBottom: 0,
+                marginTop: 2,
+                width: 45,
               }}
             >
-              {" "}
-              {">"}{" "}
-            </Button>
-          </Box>
-
-          <Box
-            style={{
-              top: -50,
-              position: "relative",
-              height: "50px",
-            }}
-          >
-            <h5 style={{ marginTop: 0, marginRight: 10 }}>Row #s</h5>
+              Row #s
+            </h5>
             <Select
               id="selector"
               className="layout-rows-selector"
@@ -169,87 +159,95 @@ export default function LayoutForm() {
             >
               {choice}
             </Select>
-          </Box>
-          <Box
-            sx={{ position: "relative", float: "left", left: -200, top: -80 }}
-          >
-            <Table
-              aria-label="simple table"
-              sx={{
-                display: "flex",
-                justifyContent: "space-evenly",
-                verticalAlign: "middle",
-
-                fontSize: "0.7rem",
-              }}
-            >
-              <TableBody>
-                <TableRow>
-                  {/*<TableCell sx={{ background: "black", color: 'white' }}>Delete</TableCell> */}
-                  <TableCell className={classes.cells}>
-                    <h4 className={classes.center}>Plys</h4>
-                  </TableCell>
-                  <TableCell className={classes.cells}>
-                    <TextField
-                      className={classes.topRow}
-                      variant="outlined"
-                      size="small"
-                    />
-                  </TableCell>
-                  <TableCell className={classes.cells}>
-                    <h4 className={classes.center}>Thick</h4>
-                  </TableCell>
-                  <TableCell className={classes.cells}>
-                    <TextField
-                      className={classes.topRow}
-                      variant="outlined"
-                      size="small"
-                    />
-                  </TableCell>
-                  <TableCell className={classes.cells}>
-                    <h4 className={classes.center}>Qty</h4>
-                  </TableCell>
-                  <TableCell className={classes.cells}>
-                    <TextField
-                      className={classes.topRow}
-                      variant="outlined"
-                      InputProps={{
-                        classes: {
-                          input: classes.resize,
-                        },
-                      }}
-                    />
-                  </TableCell>
-                  <TableCell className={classes.cells}>
-                    <h4>OverCut:</h4>
-                  </TableCell>
-                  <TableCell className={classes.cells}>
-                    <TextField
-                      className={classes.topRow}
-                      variant="outlined"
-                      size="small"
-                    />
-                  </TableCell>
-                </TableRow>
-                <Angles rowName="Angles" totalRows={rowNumber} />
-                <Rows rowName="Min Length required" totalRows={rowNumber} />
-                <Rows rowName="Quantity" totalRows={rowNumber} />
-                <Rows rowName="Length" totalRows={rowNumber} />
-                <Rows rowName="Wood Units" totalRows={rowNumber} />
-                <Rows rowName="# Pcs Required" totalRows={rowNumber} />
-              </TableBody>
-            </Table>
-            <Box alignSelf={"center"}>
-              <Accumulative totalRows={rowNumber} rowName="accum1" />
-              <Accumulative totalRows={rowNumber} rowName="accum2" />
-              <Accumulative totalRows={rowNumber} rowName="accum3" />
-              <Accumulative totalRows={rowNumber} rowName="accum4" />
-            </Box>
-          </Box>
-          <Box sx={{ position: "relative", float: "right", top: -200 }}>
-            <Form />
-          </Box>
+          </div>
         </Box>
+        <Table
+          aria-label="simple table"
+          sx={{
+            display: "flex",
+            justifyContent: "space-evenly",
+            verticalAlign: "middle",
+
+            fontSize: "0.7rem",
+          }}
+        >
+          <TableBody>
+            <TableRow>
+              {/*<TableCell sx={{ background: "black", color: 'white' }}>Delete</TableCell> */}
+              <TableCell className={classes.cells}>
+                <h4 className={classes.center}>Plys</h4>
+              </TableCell>
+              <TableCell className={classes.cells}>
+                <TextField
+                  className={classes.topRow}
+                  variant="outlined"
+                  size="small"
+                />
+              </TableCell>
+              <TableCell className={classes.cells}>
+                <h4 className={classes.center}>Thick</h4>
+              </TableCell>
+              <TableCell className={classes.cells}>
+                <TextField
+                  className={classes.topRow}
+                  variant="outlined"
+                  size="small"
+                />
+              </TableCell>
+              <TableCell className={classes.cells}>
+                <h4 className={classes.center}>Qty</h4>
+              </TableCell>
+              <TableCell className={classes.cells}>
+                <TextField
+                  className={classes.topRow}
+                  variant="outlined"
+                  InputProps={{
+                    classes: {
+                      input: classes.resize,
+                    },
+                  }}
+                />
+              </TableCell>
+              <TableCell className={classes.cells}>
+                <h4>OverCut:</h4>
+              </TableCell>
+              <TableCell className={classes.cells}>
+                <TextField
+                  className={classes.topRow}
+                  variant="outlined"
+                  size="small"
+                />
+              </TableCell>
+            </TableRow>
+            <Angles rowName="Angles" totalRows={rowNumber} />
+            <Rows rowName="Min Length required" totalRows={rowNumber} />
+            <Rows rowName="Quantity" totalRows={rowNumber} />
+            <Rows rowName="Length" totalRows={rowNumber} />
+            <Rows rowName="Wood Units" totalRows={rowNumber} />
+            <Rows rowName="# Pcs Required" totalRows={rowNumber} />
+          </TableBody>
+        </Table>
+        <Box sx={{ display: "grid" }}>
+          <div>
+            <label for="fname">Dim</label> <label for="fname">Prep</label>
+          </div>
+          <div>
+            <Accumulative totalRows={rowNumber} rowName="accum1" />
+          </div>
+          <div>
+            <Accumulative totalRows={rowNumber} rowName="accum2" />
+          </div>
+          <div>
+            <Accumulative totalRows={rowNumber} rowName="accum3" />
+          </div>
+          <div>
+            <Accumulative totalRows={rowNumber} rowName="accum4" />
+          </div>
+        </Box>
+      </Box>
+      {/*This is the main right box */}
+      <Box sx={{ position: "absolute", right: 0, top: 120 }}>
+        <Form />
       </Box>
     </>
   );
