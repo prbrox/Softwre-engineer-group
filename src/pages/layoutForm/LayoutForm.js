@@ -87,13 +87,11 @@ export default function LayoutForm() {
           alignItems: "center",
           justifyContent: "center",
           position: "relative",
-          left: 100
+          left: 200,
         }}
       >
         <Box>
-          <h3 style={{ }}>
-            Flange Layout
-          </h3>
+          <h3 style={{}}>Flange Layout</h3>
           <Box style={{ position: "relative", height: "30px" }}>
             <h4>Dia</h4>
             <TextField
@@ -241,6 +239,7 @@ export default function LayoutForm() {
               </TableBody>
             </Table>
             <Box alignSelf={"center"}>
+              <label for="fname">Dim</label> <label for="fname">Prep</label>
               <Accumulative totalRows={rowNumber} rowName="accum1" />
               <Accumulative totalRows={rowNumber} rowName="accum2" />
               <Accumulative totalRows={rowNumber} rowName="accum3" />
