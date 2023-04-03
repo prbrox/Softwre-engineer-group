@@ -1,14 +1,5 @@
+import { Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import {
-  Box,
-  Button,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-  TextField,
-  Typography,
-} from "@mui/material";
 //acts as the css for the code
 const useStyles = makeStyles((theme) => ({
   cell: {
@@ -21,7 +12,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Accumulative(props) {
   const { totalRows, rowName } = props;
   const classes = useStyles();
+
   
+
   //generates input boxes based on the numebr of inputs
   function GenerateInputs(props) {
     const { name, numberOfInputs } = props;
@@ -29,16 +22,16 @@ export default function Accumulative(props) {
     return [...Array(parseInt(numberOfInputs))].map((e, i) => {
       return (
         //this is the element that will be rende, control it by changing the cell's css
-        <input key={name + i} className={classes.cell}>
-          
-        </input>
+        <input key={name + i} className={classes.cell}></input>
       );
     });
   }
   return (
     <>
       <Box>
-        <fieldset style={{ position: "relative", float: "left" }}>
+        <fieldset
+          style={{ position: "relative", float: "left", minWidth: "300px" }}
+        >
           {totalRows ? (
             <>
               <div>
@@ -46,7 +39,7 @@ export default function Accumulative(props) {
                 <GenerateInputs numberOfInputs={totalRows} name={rowName} />
               </div>
               <div>
-                <label style={{ marginRight: 52 }}>Cut:</label>
+                <label style={{ marginRight: 65 }}>Cut:</label>
                 <GenerateInputs numberOfInputs={totalRows} name={rowName} />
               </div>
             </>
@@ -56,7 +49,7 @@ export default function Accumulative(props) {
                 <label for="fname">Cumulative:</label>
               </div>
               <div>
-                <label style={{ marginRight: 50 }}>Cut:</label>
+                <label style={{ marginRight: 65 }}>Cut:</label>
               </div>
             </>
           )}
@@ -71,9 +64,13 @@ export default function Accumulative(props) {
             <option value="5.5">5.5</option>
           </select>
         </fieldset>
-
-        <div style={{ float: "right", width: "100px", height: 35 }}>
-          <p className="border">Loss #Bdls</p>
+        <div style={{ float: "right", width: "100px", height: 30, alignContent: "start" }}>
+          <p className="border" style={{ width: "40%", float: "left" }}>
+            Loss
+          </p>
+          <p className="border" style={{ width: "50%", float: "right" }}>
+            Blds
+          </p>
         </div>
       </Box>
     </>
