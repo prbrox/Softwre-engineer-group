@@ -227,12 +227,22 @@ export default function LayoutForm() {
             <Rows rowName="# Pcs Required" totalRows={rowNumber} />
           </TableBody>
         </Table>
-        <Box alignSelf={"center"} maxWidth={772} width={"fit-content"}>
-          <label for="fname">Dim</label> <label for="fname">Prep</label>
-          <Accumulative totalRows={rowNumber} rowName="accum1" />
-          <Accumulative totalRows={rowNumber} rowName="accum2" />
-          <Accumulative totalRows={rowNumber} rowName="accum3" />
-          <Accumulative totalRows={rowNumber} rowName="accum4" />
+        <Box sx={{ display: "grid" }}>
+          <div>
+            <label for="fname">Dim</label> <label for="fname">Prep</label>
+          </div>
+          <div>
+            <Accumulative totalRows={rowNumber} rowName="accum1" />
+          </div>
+          <div>
+            <Accumulative totalRows={rowNumber} rowName="accum2" />
+          </div>
+          <div>
+            <Accumulative totalRows={rowNumber} rowName="accum3" />
+          </div>
+          <div>
+            <Accumulative totalRows={rowNumber} rowName="accum4" />
+          </div>
         </Box>
       </Box>
       {/*This is the main right box */}

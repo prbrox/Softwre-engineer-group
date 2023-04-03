@@ -28,43 +28,45 @@ export default function Accumulative(props) {
   }
   return (
     <>
-      <Box minWidth={780}>
-        <fieldset
-          style={{ position: "relative", float: "left", minWidth: "400px" }}
-        >
-          {totalRows ? (
-            <>
-              <div>
-                <label for="fname">Cumulative:</label>
-                <GenerateInputs numberOfInputs={totalRows} name={rowName} />
-              </div>
-              <div>
-                <label style={{ marginRight: 65 }}>Cut:</label>
-                <GenerateInputs numberOfInputs={totalRows} name={rowName} />
-              </div>
-            </>
-          ) : (
-            <>
-              <div>
-                <label for="fname">Cumulative:</label>
-              </div>
-              <div>
-                <label style={{ marginRight: 65 }}>Cut:</label>
-              </div>
-            </>
-          )}
-          {/*This is the first drop down below cut, called a selector */}
-          <select type="number" name="number" id="number">
-            <option value="343">343</option>
-            <option value="121">121</option>
-          </select>{" "}
-          <br />{" "}
-          <select type="number" name="number" id="number">
-            <option value="3.5">3.5</option>
-            <option value="5.5">5.5</option>
-          </select>
-        </fieldset>
-        <div style={{ float: "right", width: "100px", height: 30, alignContent: "start" }}>
+      <Box>
+        <div style={{ float: "left" }}>
+          <fieldset
+            style={{ position: "relative", minWidth: "400px", }}
+          >
+            {totalRows ? (
+              <>
+                <div>
+                  <label for="fname">Cumulative:</label>
+                  <GenerateInputs numberOfInputs={totalRows} name={rowName} />
+                </div>
+                <div>
+                  <label style={{ marginRight: 65 }}>Cut:</label>
+                  <GenerateInputs numberOfInputs={totalRows} name={rowName} />
+                </div>
+              </>
+            ) : (
+              <>
+                <div>
+                  <label for="fname">Cumulative:</label>
+                </div>
+                <div>
+                  <label style={{ marginRight: 65 }}>Cut:</label>
+                </div>
+              </>
+            )}
+            {/*This is the first drop down below cut, called a selector */}
+            <select type="number" name="number" id="number">
+              <option value="343">343</option>
+              <option value="121">121</option>
+            </select>{" "}
+            <br />{" "}
+            <select type="number" name="number" id="number">
+              <option value="3.5">3.5</option>
+              <option value="5.5">5.5</option>
+            </select>
+          </fieldset>
+        </div>
+        <div style={{ float: "right",  width: "100px", height: 30 }}>
           <p className="border" style={{ width: "45%", float: "left" }}>
             Loss
           </p>
