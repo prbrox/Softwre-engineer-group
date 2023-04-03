@@ -28,9 +28,9 @@ export default function Accumulative(props) {
   }
   return (
     <>
-      <Box>
+      <Box minWidth={780}>
         <fieldset
-          style={{ position: "relative", float: "left", minWidth: "300px" }}
+          style={{ position: "relative", float: "left", minWidth: "400px" }}
         >
           {totalRows ? (
             <>
@@ -65,10 +65,10 @@ export default function Accumulative(props) {
           </select>
         </fieldset>
         <div style={{ float: "right", width: "100px", height: 30, alignContent: "start" }}>
-          <p className="border" style={{ width: "40%", float: "left" }}>
+          <p className="border" style={{ width: "45%", float: "left" }}>
             Loss
           </p>
-          <p className="border" style={{ width: "50%", float: "right" }}>
+          <p className="border" style={{ width: "45%", float: "right" }}>
             Blds
           </p>
         </div>

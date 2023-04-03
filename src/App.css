@@ -54,16 +54,14 @@ body{
 
 /*--------------------Layout Form Start------------------- */
 .layout-selector{
-  top: -45px;
-  width: 100px;
-  left: 55px;
+  width: 120px;
   font-size: 50%;
-
+  float: "right";
+  left: 10px;
 }
 .layout-rows-selector{
-  top: -45px;
-    width: 150px;
-    left: 55px;
+    width: 200px;
+    left: 5px;
     font-size: 80%;
 }
 .container{

@@ -1,34 +1,58 @@
+import {
+  Box,
+  Button,
+
+} from "@mui/material";
+
 function Form() {
   return (
     <div>
       <div className="container">
+        <Box>
+          <Button
+            variant="contained"
+            sx={{ backgroundColor: "rgb(177, 81, 42)" }}
+          >
+            {" "}
+            {"<"}{" "}
+          </Button>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "rgb(177, 81, 42)",
+            }}
+          >
+            {" "}
+            {">"}{" "}
+          </Button>
+        </Box>
         <form className="form">
           <label>Waste/Circle</label>
           <input type="text" />
           <br />
-          <br/>
+          <br />
           <label>WULoss</label>
           <input type="text" />
           <br />
-          <br/>
+          <br />
           <label>WU Consumed</label>
           <input type="text" />
           <br />
-          <br/>
+          <br />
           <label>produced_WU</label> <input type="text" />
           <br />
-          <br/>
+          <br />
           <label>Customer</label>
           <input type="text" />
           <br />
-          <br/>
+          <br />
           <label>Job# </label>
           <input type="text" />
           <br />
-          <br/>
+          <br />
           <label>Page#</label> <input type="text" />
           <br />
-          <br/>
+          <br />
           <label>Go To:</label>
           <input list="example" />
           <datalist id="example">
@@ -48,18 +72,17 @@ function Form() {
             <label className="label">Work Order 1</label>
             <input type="text" />
             <br />
-            <br/>
-            <label className="label" >Work Order 2</label> <input type="text" />
-            <br/>
-            <br/>
+            <br />
+            <label className="label">Work Order 2</label> <input type="text" />
+            <br />
+            <br />
             <label className="label">Work Order 3</label>
-          
             <input type="text" />
             <br />
-            <br/>
+            <br />
             <label className="label">Work Order 4</label> <input type="text" />
             <br />
-            <br/>
+            <br />
             <label className="label">Work Order 5</label> <input type="text" />
           </form>
         </div>
