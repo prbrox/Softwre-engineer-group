@@ -14,7 +14,7 @@ import lineNames from "../../components/LineNames";
 import Rows from "./components/Rows";
 import Angles from "./components/Angles";
 import { React, useState } from "react";
-import Form from "./components/Form";
+import Form from "./components/Form.js";
 import Loss from "./components/Loss";
 import Accumulative from "./components/Accumulative";
 const useStyles = makeStyles((theme) => ({
@@ -229,7 +229,7 @@ export default function LayoutForm() {
         </Table>
         <Box sx={{ display: "grid" }}>
           <div>
-            <label for="fname">Dim</label> <label for="fname">Prep</label>
+            <label htmlFor="fname">Dim</label> <label htmlFor="fname">Prep</label>
           </div>
           <div>
             <Accumulative totalRows={rowNumber} rowName="accum1" />
