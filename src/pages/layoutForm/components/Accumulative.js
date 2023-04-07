@@ -62,6 +62,18 @@ export default function Accumulative(props) {
           <option value="5.5">5.5</option>
         </select>
       </fieldset>
+      <div className="item2">
+        <div>
+          <div className="border">Loss</div>
+          <div className="border">#Bdls</div>
+        </div>
+        <div>
+          <div className="border"> 0</div>
+          <div className="border">0</div>
+        </div>
+        <div></div>
+        <div className=" spacing">Example text </div>
+      </div>
     </>
   );
 }
