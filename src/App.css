@@ -148,3 +148,70 @@ tr.last {
   border-right: none;
 } */
 /*--------------------Layout Form End------------------ */
+/* Accumulative css */
+.border {
+
+  border: 2px solid black;
+  width: 5vw;
+  display: inline-block;
+}
+
+.in-line {
+  display: inline-block;
+
+  padding: 10px;
+  border: 1px solid black;
+  display: inline-flex;
+  width: auto;
+
+
+}
+
+.left {
+  position: relative;
+  left: 20px;
+
+}
+
+.parent {
+  justify-content: space-around;
+}
+
+.space-around {
+  margin-left: 20px;
+}
+
+.center1 {
+  display: flex;
+  justify-content: center;
+}
+
+.item1 {
+  /* accumulative box */
+  float: left;
+}
+
+.item2 {
+  /* loss/#blds box */
+  float: right;
+  /* margin-top: 20px; */
+
+}
+
+.container1 {
+  display: flex;
+  margin-left: 70px;
+  padding: 80px;
+}
+
+.spacing {
+  width: auto;
+  justify-content: center;
+  border: 2px solid black;
+}
+
+.input1 {
+  margin-bottom: -30px;
+  margin-left: 15px;
+
+}
