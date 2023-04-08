@@ -229,19 +229,20 @@ export default function LayoutForm() {
         </Table>
         <Box sx={{ display: "grid" }}>
           <div>
-            <label htmlFor="fname">Dim</label> <label htmlFor="fname">Prep</label>
+            <label htmlFor="fname">Dim</label>{" "}
+            <label htmlFor="fname">Prep</label>
           </div>
           <div>
-            <Accumulative totalRows={rowNumber} rowName="accum1" />
+            <Accumulative totalRows={rowNumber} row="1" />
           </div>
           <div>
-            <Accumulative totalRows={rowNumber} rowName="accum2" />
+            <Accumulative totalRows={rowNumber} row="2" />
           </div>
           <div>
-            <Accumulative totalRows={rowNumber} rowName="accum3" />
+            <Accumulative totalRows={rowNumber} row="3" />
           </div>
           <div>
-            <Accumulative totalRows={rowNumber} rowName="accum4" />
+            <Accumulative totalRows={rowNumber} row="4" />
           </div>
         </Box>
       </Box>

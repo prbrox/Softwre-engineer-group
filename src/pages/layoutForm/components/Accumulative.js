@@ -11,18 +11,55 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Accumulative(props) {
-  const [accumulateBox, setAccumulateBox] = useState({lengthloss: 0, totalLoss: 0, LumberPerblds: 0, totalBlds: 0  })
-  const { totalRows, rowName } = props;
+  const [accumulateBox, setAccumulateBox] = useState({
+    lengthloss: 0,
+    totalLoss: 0,
+    LumberPerblds: 0,
+    totalBlds: 0,
+  });
+  const { totalRows, row } = props;
   const classes = useStyles();
 
   //generates input boxes based on the numebr of inputs
   function GenerateInputs(props) {
-    const { name, numberOfInputs } = props;
+    const { name, totalNumberOfColumns, row } = props;
+    //check each column, populate the value of current column based from all preceding boxes
+    const populateCumulative = async (columnNumber) => {
+      var holder = 0,
+        sender,
+        value;
+      //start at first box, go until the current box  eqauls the total number of columns
+      for (let current = 0; current < totalNumberOfColumns; current++) {
+        value = document.getElementById(`cut-${row}-${current}`).value;
+        //convert the value into an Int, ensure it's bigger than 0
+        if (parseInt(value) > 0) {
+          if (current > 0) {
+            //do the calculation
+            holder = parseInt(value) + holder + 0.5;
+            sender = holder;
+          } else {
+            holder = parseInt(value) + holder;
+            sender = holder;
+          }
+          //if the value is less than or equal to 0
+        } else {
+          sender = 0;
+        }
+        //set the above box to sender
+        document.getElementById(`cum-${row}-${current}`).value = sender;
+      }
+    };
     //builds an array the size of number of inputs, then generates as many input boxes are the size of number of inputs
-    return [...Array(parseInt(numberOfInputs))].map((e, i) => {
+    return [...Array(parseInt(totalNumberOfColumns))].map((e, i) => {
       return (
         //this is the element that will be rende, control it by changing the cell's css
-        <input key={name + i} className={classes.cell}></input>
+        <input
+          id={name + "-" + row + "-" + i}
+          key={name + i}
+          className={classes.cell}
+          onChange={() => populateCumulative(i)}
+          defaultValue={0}
+        ></input>
       );
     });
   }
@@ -34,11 +71,19 @@ export default function Accumulative(props) {
             <>
               <div>
                 <label for="fname">Cumulative:</label>
-                <GenerateInputs numberOfInputs={totalRows} name={rowName} />
+                <GenerateInputs
+                  totalNumberOfColumns={totalRows}
+                  name={"cum"}
+                  row={row}
+                />
               </div>
               <div>
                 <label style={{ marginRight: 52 }}>Cut:</label>
-                <GenerateInputs numberOfInputs={totalRows} name={rowName} />
+                <GenerateInputs
+                  totalNumberOfColumns={totalRows}
+                  name={"cut"}
+                  row={row}
+                />
               </div>
             </>
           ) : (
