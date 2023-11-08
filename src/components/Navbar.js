@@ -12,7 +12,7 @@ export default function Navbar() {
             color="secondary"
             style={{ margin: 20 }}
           >
-            Controls
+            Menu
           </Button>
           <Button
             variant="contained"
@@ -30,7 +30,7 @@ export default function Navbar() {
             color="secondary"
             style={{ margin: 20 }}
           >
-            Layout Form
+            Checkout
           </Button>
         </Toolbar>
       </AppBar>
